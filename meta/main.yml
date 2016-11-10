@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: alex left
+  description: install oracle java without external repositories
+  license: MIT
+  min_ansible_version: 2.2
+  platforms:
+  - name: ubuntu
+    versions:
+    - all
+  - name: debian
+    versions:
+    - all
+  galaxy_tags:
+    - java
+    - oracle
+    - installer

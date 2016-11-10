@@ -1,0 +1,30 @@
+  - name: download java 
+    get_url:
+      url={{ java.download_url }}
+      dest={{ java.download_path }}
+      headers='Cookie:oraclelicense=accept-securebackup-cookie'
+
+  - name: Ensure installation folder
+    file: 
+      path={{ java.install_path }}
+      state=directory 
+      mode=0755
+
+  - name: unarchive java files
+    unarchive: 
+      src={{ java.download_path }}
+      dest={{ java.install_path }}
+      remote_src=yes
+
+  - name: Make as default JVM 1/2
+    shell: update-alternatives --install /usr/bin/java java {{ java.install_path }}/{{ java.version_path }}/bin/java 100
+    when: java.default
+
+  - name: Make as default JVM 2/2
+    shell: update-alternatives --install /usr/bin/javac javac {{ java.install_path }}/{{ java.version_path }}/bin/javac 100
+    when: java.default
+
+  - name: delete temp files
+    file: 
+      path={{ java.install_path }}
+      state=absent
