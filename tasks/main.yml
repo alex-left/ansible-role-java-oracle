@@ -1,7 +1,7 @@
   - name: download java 
     get_url:
       url={{ java.download_url }}
-      dest={{ java.download_path }}
+      dest={{ java.download_dest }}
       headers='Cookie:oraclelicense=accept-securebackup-cookie'
 
   - name: Ensure installation folder
@@ -12,7 +12,7 @@
 
   - name: unarchive java files
     unarchive: 
-      src={{ java.download_path }}
+      src={{ java.download_dest }}
       dest={{ java.install_path }}
       remote_src=yes
 
@@ -26,5 +26,5 @@
 
   - name: delete temp files
     file: 
-      path={{ java.install_path }}
+      path={{ java.download_dest }}
       state=absent
