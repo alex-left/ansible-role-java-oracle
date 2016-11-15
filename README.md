@@ -1,4 +1,4 @@
-Role Name
+Description
 =========
 
 Install oracle java directly from oracle website without third's repositories (webupd usually) in debian / ubuntu systems
